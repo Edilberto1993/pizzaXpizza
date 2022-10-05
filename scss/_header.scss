@@ -1,0 +1,39 @@
+header{
+    div.div{
+        display: flex;
+        position: static;
+        padding-left: 50px;
+        align-items: center;
+        h1{
+            color: lightgoldenrodyellow;
+        }
+        
+    }
+    div.pizzagrupo{
+        width: 30%;
+        ul.ul{
+            height: 100%;
+            li{
+                width: 200px;
+                list-style: none;
+                color: lightgoldenrodyellow;
+                width: 200px;
+                font-size: 20px;
+            }
+        }
+    }
+    div.modal-contenedor{
+        div.productoEnCarrito{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgb(180, 156, 156);
+        }
+    }
+  
+    
+    
+    
+   
+}

@@ -1,0 +1,22 @@
+main{
+    section{
+        div#divCheckBox{
+            border: 1px solid black;
+            border-radius: 10px;
+            margin: 20px 0 0 20px ;
+            div.cheked{
+                padding: 20px;
+            }
+        }
+        div.form{
+            border: 1px solid black;
+            border-radius: 10px;
+            margin: 20px 0 0 20px ;
+            form{
+                padding: 20px;
+            }
+            
+
+        }
+    }
+}

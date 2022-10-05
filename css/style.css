@@ -1,0 +1,52 @@
+header div.div {
+  display: flex;
+  position: static;
+  padding-left: 50px;
+  align-items: center;
+}
+header div.div h1 {
+  color: lightgoldenrodyellow;
+}
+header div.pizzagrupo {
+  width: 30%;
+}
+header div.pizzagrupo ul.ul {
+  height: 100%;
+}
+header div.pizzagrupo ul.ul li {
+  width: 200px;
+  list-style: none;
+  color: lightgoldenrodyellow;
+  width: 200px;
+  font-size: 20px;
+}
+header div.modal-contenedor div.productoEnCarrito {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(180, 156, 156);
+}
+
+main section div#divCheckBox {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 20px 0 0 20px;
+}
+main section div#divCheckBox div.cheked {
+  padding: 20px;
+}
+main section div.form {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 20px 0 0 20px;
+}
+main section div.form form {
+  padding: 20px;
+}
+
+section#seccionProductos {
+  border: 1px solid black;
+  margin: 20px;
+  border-radius: 10px;
+}/*# sourceMappingURL=style.css.map */
