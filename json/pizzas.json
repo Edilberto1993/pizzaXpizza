@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "tipo": "hawaiana",
+        "especias":["piña, jamon, bocadillo, salsa "],
+        "queso": "mozarella",
+        "precio": 6500,
+        "imagen": "hawaiana.jpg"
+
+    },
+    {
+        "id": 2,
+        "tipo": "peperoni",
+        "especias":["peperoni, chorizo, carne, polo"],
+        "queso": "mozarella",
+        "precio": 6500,
+        "imagen": "peperoni.jpg"
+
+    },
+    {
+        "id": 3,
+        "tipo": "champiñones",
+        "especias":["champiñones, aceitunas, vegetales"],
+        "queso": "mozarella",
+        "precio": 6500,
+        "imagen": "champiniones.jpg"
+
+    },
+    {
+        "id": 4,
+        "tipo": "mexicana",
+        "especias":["tostacos, carne molida,  pimiento,  champiñones, aceitunas"],
+        "queso": "mozarella",
+        "precio": 6500,
+        "imagen": "mexicana.jpg"
+
+    },
+    {
+        "id": 5,
+        "tipo": "pollo",
+        "especias":["pollo, tomate, cebolla larga", "queso mozarella"],
+        "queso": "mozarella",
+        "precio": 6500,
+        "imagen": "pollo.jpg"
+
+    },
+    {
+        "id": 6,
+        "tipo": "vegetariana",
+        "especias":[ "cebolla, maíz, pimiento verde, tomate en rodajas"],
+        "queso": "mozarella",
+        "precio": 6500,
+        "imagen": "vegetariana.jpg"
+
+    },
+    {
+        "id": 7,
+        "tipo": "mixta",
+        "especias":["piña, jamon, bocadillo, vegetales"],
+        "queso": "mozarella",
+        "precio": 6500,
+        "imagen": "mixta.jpg"
+
+    }
+]

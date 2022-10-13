@@ -1,35 +1,42 @@
+
+
+
 Swal.fire({
     title: "Bienvenido a pizzaXpizza",
     timer: 1500
 })
 class PizzaPersonal{
-    constructor(id, tipo, especias, queso, precio, imagen, cantidad ){
+    constructor(id, tipo, especias, queso, precio, imagen ){
         this.id = id,
         this.tipo = tipo,
         this.especias = especias,
         this.queso = queso,
         this.precio = precio,
-        this.imagen = imagen,
-        this.cantidad = cantidad
+        this.imagen = imagen
+       
     }
     datosPizza(){
-        console.log(` ID : ${this.id} \n TIPO: ${this.tipo} \n ESPECIAS: ${this.especias} \n TIPO DE QUESO: ${this.queso} \n PRECIO: ${this.precio} \n  CANTIDAD: ${this.cantidad}`)
+        console.log(` ID : ${this.id} \n TIPO: ${this.tipo} \n ESPECIAS: ${this.especias} \n TIPO DE QUESO: ${this.queso} \n PRECIO: ${this.precio}   `)
 
     }
 }
 
-// pizzas agregadas mediante un push()  en un array datosPizza = [];
+
+//llamar datosd pizza persona
+let datosPizzaPersonal =[]
+const llamarPizzaPersonal = async() =>{
+    const response = await fetch("/json/pizzas.json")
+    const data = await response.json()
+    console.log(data);
+    for(let pizza of data){
+        let nuevaPizzza = new PizzaPersonal(pizza.id, pizza.tipo, pizza.especias, pizza.queso, pizza.precio, pizza.imagen)
+         datosPizzaPersonal.push(nuevaPizzza)
+    }
+    
 
 
-const hawaiana = new PizzaPersonal(1, "hawaiana", "piña, jamon, bocadillo, salsa ", "queso mozarella", 6500, "hawaiana.jpg", 1, )
-const peperoni = new PizzaPersonal(2, "peperoni", "peperoni, chorizo, carne, polo", "queso mozarella", 6500, "peperoni.jpg", 1)
-const champiñones = new PizzaPersonal(3, "champiñones", "champiñones, aceitunas, vegetales", "queso mozarella", 6500, "champiniones.jpg", 1)
-const mexicana = new PizzaPersonal(4, "mexicana", "tostacos, carne molida,  pimiento,  champiñones, aceitunas", "queso mozarella", 6500, "mexicana.jpg", 1)
-const pollo = new PizzaPersonal(5, "pollo", "pollo, tomate, cebolla larga", "queso mozarella", 6500, "pollo.jpg", 1)
-const vegetaria = new PizzaPersonal(6, "vegetariana", "cebolla, maíz, pimiento verde, tomate en rodajas", "queso mozarella", 6500, "vegetariana.jpg", 1)
-const mixta = new PizzaPersonal(7,"mixta", "piña, jamon, bocadillo, vegetales", "queso mozarella", 6500, "mixta.jpg", 1)
-
-let datosPizzaPersonal = [hawaiana, peperoni, champiñones, mexicana, pollo, vegetaria, mixta];
+}
+llamarPizzaPersonal()
 
 
 
