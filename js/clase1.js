@@ -25,7 +25,7 @@ class PizzaPersonal{
 //llamar datosd pizza persona
 let datosPizzaPersonal =[]
 const llamarPizzaPersonal = async() =>{
-    const response = await fetch("/json/pizzas.json")
+    const response = await fetch("../json/pizzas.json")
     const data = await response.json()
     console.log(data);
     for(let pizza of data){
