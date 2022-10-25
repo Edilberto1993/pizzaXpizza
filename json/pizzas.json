@@ -35,17 +35,9 @@
         "imagen": "mexicana.jpg"
 
     },
+
     {
         "id": 5,
-        "tipo": "pollo",
-        "especias":["pollo, tomate, cebolla larga", "queso mozarella"],
-        "queso": "mozarella",
-        "precio": 6500,
-        "imagen": "pollo.jpg"
-
-    },
-    {
-        "id": 6,
         "tipo": "vegetariana",
         "especias":[ "cebolla, maíz, pimiento verde, tomate en rodajas"],
         "queso": "mozarella",
@@ -54,7 +46,7 @@
 
     },
     {
-        "id": 7,
+        "id": 6,
         "tipo": "mixta",
         "especias":["piña, jamon, bocadillo, vegetales"],
         "queso": "mozarella",

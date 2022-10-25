@@ -44,6 +44,9 @@ main section div.form {
 main section div.form form {
   padding: 20px;
 }
+main section div.form form input.input {
+  width: 100%;
+}
 
 section#seccionProductos {
   border: 1px solid black;

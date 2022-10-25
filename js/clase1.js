@@ -84,6 +84,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
 
 
 /// AGREGAR A CADA PIZZA EN UNA card
+
 function mostrarTodasPizza() {
     let sectionProductos = document.getElementById(`seccionProductos`)
     sectionProductos.innerHTML = ""
@@ -121,27 +122,29 @@ function mostrarTodasPizza() {
     
 
  })
-   // agregar al carrito
-    const agregarAlCarrito = (proId) => {
-        const existe = carrito.some(prod => prod.id === proId)
-        if (existe) {
-            const prod = carrito.map (prod =>{
-                if (prod.id === proId) {
-                prod.cantidad++
-                
-            }
-            })
-        
-        }else {
-
-           const item = datosPizzaPersonal.find((prod) => prod.id === proId)
-            carrito.push(item)
-            console.log(carrito);
-
-        }
-        actualizarCarrito()
-    }
+   
     
+}
+
+// agregar al carrito
+const agregarAlCarrito = (proId) => {
+    const existe = carrito.some(prod => prod.id === proId)
+    if (existe) {
+        const prod = carrito.map (prod =>{
+            if (prod.id === proId) {
+            prod .cantidad++
+            
+        }
+        })
+    
+    }else {
+
+       const item = datosPizzaPersonal.find((prod) => prod.id === proId)
+        carrito.push(item)
+        console.log(carrito);
+
+    }
+    actualizarCarrito()
 }
 
 
@@ -151,6 +154,9 @@ const eliminarDelCarrito = (prodId) =>{
     const indice = carrito.indexOf(item)
     carrito.splice(indice, 1)
     actualizarCarrito()
+    console.log(carrito);
+
+    
     
 }
 
@@ -165,7 +171,7 @@ let actualizarCarrito = () =>{
        div1.innerHTML =`<img src="img/${prod.imagen}" class="card-img-top" alt="..." style="height: 50px; width: 50px;">
                        <p>${prod.tipo} personal</p>
                        <p>Precio: ${prod.precio}</p
-                       <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+                       <p>Cantidad: <span id="cantidad">${prod.cantidad}</span> </p>
                        <button onclick ="eliminarDelCarrito(${prod.id})" class="boton-eliminar border-0 text-danger "><i class="fas fa-trash-alt"></button>`
 
         contenedorCarrito.appendChild(div1)
@@ -178,48 +184,288 @@ let actualizarCarrito = () =>{
 }
 
 
-
-
-//funcion encontrarPizza() mediante find() el cual tiene nombre especifico
-
-function encontrarPizza(){
-    /*const filtrarPizza = datosPizzaPersonal.find((pizza)=> pizza.id === pizzaId)
-    const index  = datosPizzaPersonal.indexOf(filtrarPizza)
-    datosPizzaPersonal.aplice(index, 1)*/
-    datosPizzaPersonal.forEach(()=>{
-        let buscarPizza = document.getElementsByClassName(`hawaiana`)
-    let pizzaEncontrada = datosPizzaPersonal.find((pizza) => pizza.tipo.toLowerCase() == buscarPizza.toLowerCase())
-    console.log(pizzaEncontrada)
-
-    pizzaEncontrada == undefined ? alert("El nombre de la pizza que tratas de buscar no se encuentra en nuestro catalogo") : console.log(`encontramos tu pizza y es: ${pizzaTipo.tipo}`),console.log(pizzaEncontrada)  
-
-    })
-   
-    
-}
-
-
-
-
-
-
 // filtrar por pizza
+
 let mostarTodo = document.getElementById(`mostrarTodo`)
 mostarTodo.addEventListener(`click`, mostrarTodasPizza)
+
 let pizzaHawaiana = document.getElementById(`hawaiana`)
-pizzaHawaiana.addEventListener(`click`, encontrarPizza )
-/*let pizzaPeperono = document.getElementById(`peperoni`)
-pizzaPeperono.addEventListener(`click`, mostrarPorPizza2)
+pizzaHawaiana.addEventListener(`click`, ()=>{
+    let filtrar = "hawaiana"
+    
+
+    let encontrar = datosPizzaPersonal.filter(pizza => pizza.tipo == filtrar)
+    console.log(encontrar);
+    if(encontrar.length == 0){
+        console.log("no encontramos su pizza");
+
+    }else{
+        let sectionProductos = document.getElementById(`seccionProductos`)
+        sectionProductos.innerHTML= ""
+        encontrar.forEach((pizzaPersonalHawaiana)=>{
+         let nuevoProducto  =  document.createElement("div")
+         nuevoProducto.innerHTML =  `<div id="${pizzaPersonalHawaiana.id} " class="card mx-2 my-3" style="width: 18rem; heigth: 530px ">
+        <img src="img/${pizzaPersonalHawaiana.imagen}" class="card-img-top" alt="..." style="height: 250px;">
+        <div class="card-body">
+          <h5 class="card-title text-center">${pizzaPersonalHawaiana.tipo} personal </h5>
+          <p> ESPECIAS: ${pizzaPersonalHawaiana.especias}</p>
+          <p> QUESO: ${pizzaPersonalHawaiana.queso}</p>
+          <p> PRECIO: ${pizzaPersonalHawaiana.precio}</p>
+          <a href="#" class="btn btn-primary" id="agregar${pizzaPersonalHawaiana.id}">Agregar al carrito</a>
+        </div>
+      </div>`
+        sectionProductos.append(nuevoProducto)
+         const boton = document.getElementById(`agregar${pizzaPersonalHawaiana.id}`)
+    boton.addEventListener(`click`, () =>{
+        agregarAlCarrito(pizzaPersonalHawaiana.id)
+        product = document.getElementById(`cantidad`)
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Has agregado un nuevo producto ',
+            text: `pizza ${pizzaPersonalHawaiana.tipo} personal  ha sido agregada con exito`,
+            showConfirmButton: false,
+            timer: 1500
+          })
+    } )
+       
+        
+        }) 
+        
+
+    }
+})
+
+let pizzaPeperoni = document.getElementById(`peperoni`)
+pizzaPeperoni.addEventListener(`click`, ()=>{
+    let filtrar = "peperoni"
+
+    let encontrar = datosPizzaPersonal.filter(pizza => pizza.tipo == filtrar)
+    console.log(encontrar);
+    if(encontrar.length == 0){
+        console.log("no encontramos su pizza");
+
+    }else{
+        let sectionProductos = document.getElementById(`seccionProductos`)
+        sectionProductos.innerHTML= ""
+        encontrar.forEach((pizzaPersonalPeperoni)=>{
+         let nuevoProducto  =  document.createElement("div")
+         nuevoProducto.innerHTML =  `<div id="${pizzaPersonalPeperoni.id} " class="card mx-2 my-3" style="width: 18rem; heigth: 530px ">
+        <img src="img/${pizzaPersonalPeperoni.imagen}" class="card-img-top" alt="..." style="height: 250px;">
+        <div class="card-body">
+          <h5 class="card-title text-center">${pizzaPersonalPeperoni.tipo} personal </h5>
+          <p> ESPECIAS: ${pizzaPersonalPeperoni.especias}</p>
+          <p> QUESO: ${pizzaPersonalPeperoni.queso}</p>
+          <p> PRECIO: ${pizzaPersonalPeperoni.precio}</p>
+          <a href="#" class="btn btn-primary" id="agregar${pizzaPersonalPeperoni.id}">Agregar al carrito</a>
+        </div>
+      </div>`
+        sectionProductos.append(nuevoProducto)
+         const boton = document.getElementById(`agregar${pizzaPersonalPeperoni.id}`)
+    boton.addEventListener(`click`, () =>{
+        agregarAlCarrito(pizzaPersonalPeperoni.id)
+        product = document.getElementById(`cantidad`)
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Has agregado un nuevo producto ',
+            text: `pizza ${pizzaPersonalPeperoni.tipo} personal  ha sido agregada con exito`,
+            showConfirmButton: false,
+            timer: 1500
+          })
+    } )
+       
+        
+        }) 
+        
+
+    }
+})
+
 let pizzaChampiñones = document.getElementById(`champiñones`)
-pizzaChampiñones.addEventListener(`click`, mostrarPorPizza3)
+pizzaChampiñones.addEventListener(`click`, ()=>{
+    let filtrar = "champiñones"
+
+    let encontrar = datosPizzaPersonal.filter(pizza => pizza.tipo == filtrar)
+    console.log(encontrar);
+    if(encontrar.length == 0){
+        console.log("no encontramos su pizza");
+
+    }else{
+        let sectionProductos = document.getElementById(`seccionProductos`)
+        sectionProductos.innerHTML= ""
+        encontrar.forEach((pizzaPersonalChampiñones)=>{
+         let nuevoProducto  =  document.createElement("div")
+         nuevoProducto.innerHTML =  `<div id="${pizzaPersonalChampiñones.id} " class="card mx-2 my-3" style="width: 18rem; heigth: 530px ">
+        <img src="img/${pizzaPersonalChampiñones.imagen}" class="card-img-top" alt="..." style="height: 250px;">
+        <div class="card-body">
+          <h5 class="card-title text-center">${pizzaPersonalChampiñones.tipo} personal </h5>
+          <p> ESPECIAS: ${pizzaPersonalChampiñones.especias}</p>
+          <p> QUESO: ${pizzaPersonalChampiñones.queso}</p>
+          <p> PRECIO: ${pizzaPersonalChampiñones.precio}</p>
+          <a href="#" class="btn btn-primary" id="agregar${pizzaPersonalChampiñones.id}">Agregar al carrito</a>
+        </div>
+      </div>`
+        sectionProductos.append(nuevoProducto)
+         const boton = document.getElementById(`agregar${pizzaPersonalChampiñones.id}`)
+    boton.addEventListener(`click`, () =>{
+        agregarAlCarrito(pizzaPersonalChampiñones.id)
+        product = document.getElementById(`cantidad`)
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Has agregado un nuevo producto ',
+            text: `pizza ${pizzaPersonalChampiñones.tipo} personal  ha sido agregada con exito`,
+            showConfirmButton: false,
+            timer: 1500
+          })
+    } )
+       
+        
+        }) 
+        
+
+    }
+})
+
 let pizzaMexicana = document.getElementById(`mexicana`)
-pizzaMexicana.addEventListener(`click`, mostrarPorPizza4)
-let pizzaPollo = document.getElementById(`pollo`)
-pizzaPollo.addEventListener(`click, `, mostrarPorPizza5)
+pizzaMexicana.addEventListener(`click`,()=>{
+    let filtrar = "mexicana"
+
+    let encontrar = datosPizzaPersonal.filter(pizza => pizza.tipo == filtrar)
+    console.log(encontrar);
+    if(encontrar.length == 0){
+        console.log("no encontramos su pizza");
+
+    }else{
+        let sectionProductos = document.getElementById(`seccionProductos`)
+        sectionProductos.innerHTML= ""
+        encontrar.forEach((pizzaPersonalMexicana)=>{
+         let nuevoProducto  =  document.createElement("div")
+         nuevoProducto.innerHTML =  `<div id="${pizzaPersonalMexicana.id} " class="card mx-2 my-3" style="width: 18rem; heigth: 530px ">
+        <img src="img/${pizzaPersonalMexicana.imagen}" class="card-img-top" alt="..." style="height: 250px;">
+        <div class="card-body">
+          <h5 class="card-title text-center">${pizzaPersonalMexicana.tipo} personal </h5>
+          <p> ESPECIAS: ${pizzaPersonalMexicana.especias}</p>
+          <p> QUESO: ${pizzaPersonalMexicana.queso}</p>
+          <p> PRECIO: ${pizzaPersonalMexicana.precio}</p>
+          <a href="#" class="btn btn-primary" id="agregar${pizzaPersonalMexicana.id}">Agregar al carrito</a>
+        </div>
+      </div>`
+        sectionProductos.append(nuevoProducto)
+         const boton = document.getElementById(`agregar${pizzaPersonalMexicana.id}`)
+    boton.addEventListener(`click`, () =>{
+        agregarAlCarrito(pizzaPersonalMexicana.id)
+        product = document.getElementById(`cantidad`)
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Has agregado un nuevo producto ',
+            text: `pizza ${pizzaPersonalMexicana.tipo} personal  ha sido agregada con exito`,
+            showConfirmButton: false,
+            timer: 1500
+          })
+    } )
+       
+        
+        }) 
+        
+
+    }
+})
+
+
 let pizzaVegetariana = document.getElementById(`vegetariana`)
-pizzaVegetariana.addEventListener(`click`, mostrarPorPizza6)
+pizzaVegetariana.addEventListener(`click`, ()=>{
+    let filtrar = "vegetariana"
+
+    let encontrar = datosPizzaPersonal.filter(pizza => pizza.tipo == filtrar)
+    console.log(encontrar);
+    if(encontrar.length == 0){
+        console.log("no encontramos su pizza");
+
+    }else{
+        let sectionProductos = document.getElementById(`seccionProductos`)
+        sectionProductos.innerHTML= ""
+        encontrar.forEach((pizzaPersonalVegetariana)=>{
+         let nuevoProducto  =  document.createElement("div")
+         nuevoProducto.innerHTML =  `<div id="${pizzaPersonalVegetariana.id} " class="card mx-2 my-3" style="width: 18rem; heigth: 530px ">
+        <img src="img/${pizzaPersonalVegetariana.imagen}" class="card-img-top" alt="..." style="height: 250px;">
+        <div class="card-body">
+          <h5 class="card-title text-center">${pizzaPersonalVegetariana.tipo} personal </h5>
+          <p> ESPECIAS: ${pizzaPersonalVegetariana.especias}</p>
+          <p> QUESO: ${pizzaPersonalVegetariana.queso}</p>
+          <p> PRECIO: ${pizzaPersonalVegetariana.precio}</p>
+          <a href="#" class="btn btn-primary" id="agregar${pizzaPersonalVegetariana.id}">Agregar al carrito</a>
+        </div>
+      </div>`
+        sectionProductos.append(nuevoProducto)
+         const boton = document.getElementById(`agregar${pizzaPersonalVegetariana.id}`)
+    boton.addEventListener(`click`, () =>{
+        agregarAlCarrito(pizzaPersonalVegetariana.id)
+        product = document.getElementById(`cantidad`)
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Has agregado un nuevo producto ',
+            text: `pizza ${pizzaPersonalVegetariana.tipo} personal  ha sido agregada con exito`,
+            showConfirmButton: false,
+            timer: 1500
+          })
+    } )
+       
+        
+        }) 
+        
+
+    }
+})
+
 let pizzaMixta = document.getElementById(`mixta`)
-pizzaMixta.addEventListener(`click`, mostrarPorPizza7)*/
+pizzaMixta.addEventListener(`click`, ()=>{
+    let filtrar = "mixta"
+
+    let encontrar = datosPizzaPersonal.filter(pizza => pizza.tipo == filtrar)
+    console.log(encontrar);
+    if(encontrar.length == 0){
+        console.log("no encontramos su pizza");
+
+    }else{
+        let sectionProductos = document.getElementById(`seccionProductos`)
+        sectionProductos.innerHTML= ""
+        encontrar.forEach((pizzaPersonalMixta)=>{
+         let nuevoProducto  =  document.createElement("div")
+         nuevoProducto.innerHTML =  `<div id="${pizzaPersonalMixta.id} " class="card mx-2 my-3" style="width: 18rem; heigth: 530px ">
+        <img src="img/${pizzaPersonalMixta.imagen}" class="card-img-top" alt="..." style="height: 250px;">
+        <div class="card-body">
+          <h5 class="card-title text-center">${pizzaPersonalMixta.tipo} personal </h5>
+          <p> ESPECIAS: ${pizzaPersonalMixta.especias}</p>
+          <p> QUESO: ${pizzaPersonalMixta.queso}</p>
+          <p> PRECIO: ${pizzaPersonalMixta.precio}</p>
+          <a href="#" class="btn btn-primary" id="agregar${pizzaPersonalMixta.id}">Agregar al carrito</a>
+        </div>
+      </div>`
+        sectionProductos.append(nuevoProducto)
+         const boton = document.getElementById(`agregar${pizzaPersonalMixta.id}`)
+    boton.addEventListener(`click`, () =>{
+        agregarAlCarrito(pizzaPersonalMixta.id)
+        product = document.getElementById(`cantidad`)
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Has agregado un nuevo producto ',
+            text: `pizza ${pizzaPersonalMixta.tipo} personal  ha sido agregada con exito`,
+            showConfirmButton: false,
+            timer: 1500
+          })
+    } )
+       
+        
+        }) 
+        
+
+    }
+})
 
 
 
@@ -266,15 +512,3 @@ btnGuardar.addEventListener(`click`, () =>{
 })
 
 
-
-
-
-// funcion eliminar pizza
-/*function eliminarPizza(){
-    const nombrePizza = prompt("Cual es la pizza que quieres eliminar, dame el nombre")
-    datosPizza.splice(nombrePizza, 1)
-    alert(`Has eliminado ${nombrePizza}` )
-    console.log(datosPizza.length)
-    console.log(datosPizza)  
-    
-}*/
